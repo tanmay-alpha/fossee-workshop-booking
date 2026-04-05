@@ -1,16 +1,76 @@
 @import 'tailwindcss';
 
-/* Base layout: full-width dark shell — avoids invisible text if utilities load late */
 html {
   color-scheme: dark;
 }
 
 body {
   margin: 0;
-  background-color: #111827;
+  background-color: #0f172a;
   color: #f9fafb;
 }
 
 #root {
   min-height: 100svh;
+}
+
+/**
+ * Home hero (#hero lives in HomePage): ensure layout, contrast, and readable text.
+ * bg-clip-text + text-transparent can appear invisible if gradient/clip fails — force solid copy.
+ */
+#hero {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(17 24 39),
+    rgb(30 41 59),
+    rgb(17 24 39)
+  );
+}
+
+#hero > div {
+  position: relative;
+  z-index: 10;
+}
+
+/* FOSSEE label — explicit indigo */
+#hero > div > p:first-of-type {
+  color: rgb(129 140 248) !important;
+}
+
+/* Headline: solid white, bold (overrides transparent gradient text) */
+#hero #hero-heading {
+  font-weight: 700;
+  color: #ffffff !important;
+}
+
+#hero #hero-heading span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* Subtitle directly under h1 */
+#hero #hero-heading + p {
+  color: #d1d5db !important;
+}
+
+/* Hero CTAs — explicit white labels */
+#hero a {
+  color: #ffffff !important;
+}
+
+/* Stats glass row — hero copy should read as light (not washed out) */
+#hero .mt-14,
+#hero .mt-14 span {
+  color: #f9fafb !important;
 }
