@@ -184,9 +184,9 @@ export default function WorkshopsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 pb-20 text-gray-100">
-      {/* Page header — sits above sticky bar; bg + z-index keep it from being painted over */}
-      <div className="relative z-10 border-b border-gray-800 bg-gray-900 px-4 pb-10 pt-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-900 pb-20 pt-6 text-gray-100">
+      {/* Page header — first visible page content; higher z than sticky so the bar never paints over the title */}
+      <div className="relative z-40 border-b border-gray-800 bg-gray-900 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl text-center">
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Browse Workshops
@@ -201,43 +201,13 @@ export default function WorkshopsPage() {
         </div>
       </div>
 
-      {/* Sticky search + filters — margin-top clears the header so it stays visible on load */}
-      <div className="sticky top-16 z-40 mt-6 border-b border-gray-800 bg-gray-950/90 px-4 py-4 backdrop-blur-md sm:px-6 lg:px-8">
+      {/* Sticky search + filters — top matches navbar (~64px); margin-top separates from heading */}
+      <div className="sticky top-[64px] z-30 mt-8 border-b border-gray-800 bg-gray-950/90 px-4 py-4 backdrop-blur-md sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl space-y-4">
-          <label className="relative block">
+          <label className="block">
             <span className="sr-only">Search workshops</span>
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500">
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                aria-hidden
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
-            </span>
-            <input
-              type="search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by title or tool..."
-              className={`w-full rounded-full border border-gray-700 bg-gray-800 py-3 pl-12 text-sm text-white placeholder:text-gray-500 outline-none ring-indigo-500/0 transition focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/40 ${
-                search ? 'pr-12' : 'pr-4'
-              }`}
-            />
-            {search ? (
-              <button
-                type="button"
-                aria-label="Clear search"
-                onClick={() => setSearch('')}
-                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 transition hover:text-gray-300"
-              >
+            <div className="relative">
+              <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500">
                 <svg
                   className="h-5 w-5"
                   fill="none"
@@ -249,11 +219,43 @@ export default function WorkshopsPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                   />
                 </svg>
-              </button>
-            ) : null}
+              </span>
+              <input
+                type="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search by title or tool..."
+                className={`w-full rounded-full border border-gray-700 bg-gray-800 py-3 pl-12 text-sm text-white placeholder:text-gray-500 outline-none ring-indigo-500/0 transition focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/40 ${
+                  search ? 'pr-12' : 'pr-4'
+                }`}
+              />
+              {search ? (
+                <button
+                  type="button"
+                  aria-label="Clear search"
+                  onClick={() => setSearch('')}
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 transition hover:text-white"
+                >
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                    aria-hidden
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              ) : null}
+            </div>
           </label>
 
           {/* FIX 3 + ADD 2: pills wrap on narrow screens; sort select on the same row when space allows */}
@@ -304,8 +306,8 @@ export default function WorkshopsPage() {
         </div>
       </div>
 
-      {/* Grid or empty state (ADD 3) */}
-      <div className="px-4 pt-10 sm:px-6 lg:px-8">
+      {/* Grid or empty state (ADD 3) — extra top padding so content never sits under the sticky bar */}
+      <div className="px-4 pt-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           {shownCount === 0 ? (
             <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-700 bg-gray-800/30 py-20 text-center">
