@@ -1,8 +1,14 @@
 @import 'tailwindcss';
 
-/* Base layout: full-width dark shell for the booking UI */
+/* Base layout: full-width dark shell — avoids invisible text if utilities load late */
+html {
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
+  background-color: #111827;
+  color: #f9fafb;
 }
 
 #root {

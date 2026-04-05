@@ -6,31 +6,9 @@ import {
   workshops,
 } from '../data/workshops.js'
 
-/** Tailwind classes for tool/category pills on listing cards. */
-const CATEGORY_BADGE = {
-  Python:
-    'border border-emerald-500/40 bg-emerald-500/15 text-emerald-300',
-  Scilab: 'border border-blue-500/40 bg-blue-500/15 text-blue-300',
-  R: 'border border-violet-500/40 bg-violet-500/15 text-violet-300',
-  DWSIM: 'border border-cyan-500/40 bg-cyan-500/15 text-cyan-300',
-  Arduino:
-    'border border-orange-500/40 bg-orange-500/15 text-orange-300',
-  eSim: 'border border-amber-500/40 bg-amber-500/15 text-amber-300',
-  OSDAG: 'border border-sky-500/40 bg-sky-500/15 text-sky-300',
-  OpenFOAM: 'border border-teal-500/40 bg-teal-500/15 text-teal-300',
-}
-
-/** Hover ring / glow on listing cards, matched to tool tag color (ADD 4). */
-const CATEGORY_HOVER_RING = {
-  Python: 'hover:shadow-emerald-500/25 hover:ring-emerald-500/50',
-  Scilab: 'hover:shadow-blue-500/25 hover:ring-blue-500/50',
-  R: 'hover:shadow-violet-500/25 hover:ring-violet-500/50',
-  DWSIM: 'hover:shadow-cyan-500/25 hover:ring-cyan-500/50',
-  Arduino: 'hover:shadow-orange-500/25 hover:ring-orange-500/50',
-  eSim: 'hover:shadow-amber-500/25 hover:ring-amber-500/50',
-  OSDAG: 'hover:shadow-sky-500/25 hover:ring-sky-500/50',
-  OpenFOAM: 'hover:shadow-teal-500/25 hover:ring-teal-500/50',
-}
+/** Unified translucent category pill (premium listing style). */
+const CATEGORY_BADGE_CLASS =
+  'rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-400'
 
 /** Parse workshop date label for chronological sort (ADD 2). */
 function workshopDateValue(dateStr) {
@@ -43,20 +21,20 @@ function workshopDateValue(dateStr) {
 function SeatBadge({ seats }) {
   if (seats === 0) {
     return (
-      <span className="inline-flex rounded-full border border-red-500/50 bg-red-500/15 px-3 py-1 text-xs font-semibold text-red-300">
+      <span className="inline-flex rounded-full bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-400">
         Waitlist Only
       </span>
     )
   }
   if (seats <= 5) {
     return (
-      <span className="inline-flex rounded-full border border-amber-500/50 bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-200">
+      <span className="inline-flex rounded-full bg-green-500/10 px-3 py-1 text-xs font-semibold text-green-400">
         Almost Full — {seats} seats
       </span>
     )
   }
   return (
-    <span className="inline-flex rounded-full border border-emerald-500/50 bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-200">
+    <span className="inline-flex rounded-full bg-green-500/10 px-3 py-1 text-xs font-semibold text-green-400">
       {seats} seats available
     </span>
   )
@@ -69,29 +47,19 @@ function SeatBadge({ seats }) {
 function WorkshopListingCard({ workshop }) {
   const navigate = useNavigate()
   const { id, title, category, date, seats } = workshop
-  const badgeClass =
-    CATEGORY_BADGE[category] ??
-    'border border-gray-600 bg-gray-700/40 text-gray-300'
-  const hoverRing =
-    CATEGORY_HOVER_RING[category] ??
-    'hover:shadow-gray-500/20 hover:ring-gray-500/40'
   const soldOut = seats === 0
 
   return (
-    <div
-      className={`group flex h-full flex-col rounded-2xl border border-gray-700/80 bg-gray-800 shadow-lg ring-0 transition duration-300 ease-out hover:scale-[1.02] hover:shadow-2xl hover:ring-2 ${hoverRing}`}
-    >
+    <div className="group flex h-full flex-col rounded-2xl border border-gray-700/50 bg-gray-800/40 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-gray-500 hover:shadow-2xl">
       <Link
         to={`/workshops/${id}`}
-        className="flex flex-1 flex-col rounded-t-2xl p-6 pb-4 text-left outline-none ring-indigo-500/0 transition focus-visible:ring-2 focus-visible:ring-indigo-400"
+        className="flex flex-1 flex-col rounded-t-2xl p-6 pb-4 text-left outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500/50"
       >
-        <span
-          className={`inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${badgeClass}`}
-        >
+        <span className={`inline-flex w-fit ${CATEGORY_BADGE_CLASS}`}>
           {category}
         </span>
 
-        <h3 className="mt-4 text-lg font-bold leading-snug text-white group-hover:text-indigo-100">
+        <h3 className="mt-4 text-lg font-bold leading-snug text-white group-hover:text-blue-100">
           {title}
         </h3>
 
@@ -127,7 +95,7 @@ function WorkshopListingCard({ workshop }) {
           onClick={() => {
             if (!soldOut) navigate(`/workshops/${id}`)
           }}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 px-5 py-2.5 text-sm font-semibold transition enabled:border-indigo-500/50 enabled:text-indigo-200 enabled:hover:border-indigo-400 enabled:hover:bg-indigo-500/10 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40 disabled:border-gray-600 disabled:bg-gray-900/50 disabled:text-gray-500"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition enabled:hover:bg-white/10 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40 disabled:border-gray-600 disabled:bg-gray-900/50 disabled:text-gray-500"
         >
           Book Now
           <span aria-hidden="true">→</span>
