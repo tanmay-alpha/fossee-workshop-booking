@@ -25,10 +25,11 @@ function App() {
       {/* —— Hero: gradient band, centered pitch + CTAs + trust stats —— */}
       <section
         id="hero"
-        className="flex min-h-[88vh] flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4 py-16 text-center sm:px-6"
+        className="relative isolate flex min-h-screen flex-col items-center justify-center overflow-visible bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4 py-16 text-center text-white sm:px-6"
         aria-labelledby="hero-heading"
       >
-        <div className="mx-auto flex max-w-4xl flex-col items-center">
+        {/* Keeps copy above the navbar’s sticky layer and any backdrop quirks */}
+        <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-indigo-400 sm:text-sm">
             FOSSEE · IIT Bombay
           </p>
@@ -37,11 +38,11 @@ function App() {
             id="hero-heading"
             className="text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            <span className="block">Book Workshops.</span>
-            <span className="block">Build Real Skills.</span>
+            <span className="block text-white">Book Workshops.</span>
+            <span className="block text-white">Build Skills.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-base text-gray-400 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-xl text-base text-white/90 sm:text-lg">
             Explore free, hands-on workshops designed by IIT Bombay. Open to all
             students across India.
           </p>
@@ -49,13 +50,13 @@ function App() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#workshops"
-              className="inline-flex rounded-full bg-indigo-600 px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-900/40 transition duration-200 ease-out hover:scale-[1.02] hover:bg-indigo-500 hover:shadow-indigo-800/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+              className="inline-flex rounded-full bg-indigo-600 px-8 py-3 text-sm font-semibold text-white no-underline shadow-lg shadow-indigo-900/40 transition duration-200 ease-out hover:scale-[1.02] hover:bg-indigo-500 hover:text-white hover:shadow-indigo-800/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
             >
               View Workshops
             </a>
             <a
               href="#workshops"
-              className="inline-flex rounded-full border-2 border-gray-600 bg-transparent px-8 py-3 text-sm font-semibold text-gray-200 transition duration-200 ease-out hover:scale-[1.02] hover:border-gray-500 hover:bg-gray-800/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+              className="inline-flex rounded-full border-2 border-white/40 bg-transparent px-8 py-3 text-sm font-semibold text-white no-underline transition duration-200 ease-out hover:scale-[1.02] hover:border-white/70 hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
             >
               Learn More
             </a>
