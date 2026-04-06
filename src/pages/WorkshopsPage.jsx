@@ -152,131 +152,114 @@ export default function WorkshopsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 pb-20 pt-6 text-gray-100">
-      {/* Page header — first visible page content; higher z than sticky so the bar never paints over the title */}
-      <div className="relative z-40 border-b border-gray-800 bg-gray-900 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Browse Workshops
-          </h1>
-          {/* ADD 1: live count directly under title (muted) */}
-          <p className="mt-2 text-sm text-gray-500">
-            Showing {shownCount} of {WORKSHOP_TOTAL} workshops
-          </p>
-          <p className="mx-auto mt-4 max-w-2xl text-gray-400">
-            Free, hands-on workshops by FOSSEE · IIT Bombay
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-900 text-gray-100">
+      <div className="bg-gray-900 pt-24 pb-6 px-4 max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold text-white mb-1">
+          Browse Workshops
+        </h1>
+        <p className="text-gray-400 text-sm mb-6">
+          Showing {filteredWorkshops.length} of {workshops.length} workshops
+        </p>
 
-      {/* Sticky search + filters — top matches navbar (~64px); margin-top separates from heading */}
-      <div className="sticky top-[64px] z-30 mt-8 border-b border-gray-800 bg-gray-950/90 px-4 py-4 backdrop-blur-md sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl space-y-4">
-          <label className="block">
-            <span className="sr-only">Search workshops</span>
-            <div className="relative">
-              <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500">
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                  aria-hidden
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  />
-                </svg>
-              </span>
-              <input
-                type="search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search by title or tool..."
-                className={`w-full rounded-full border border-gray-700 bg-gray-800 py-3 pl-12 text-sm text-white placeholder:text-gray-500 outline-none ring-indigo-500/0 transition focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/40 ${
-                  search ? 'pr-12' : 'pr-4'
-                }`}
-              />
-              {search ? (
-                <button
-                  type="button"
-                  aria-label="Clear search"
-                  onClick={() => setSearch('')}
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 transition hover:text-white"
-                >
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    aria-hidden
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              ) : null}
-            </div>
-          </label>
-
-          {/* FIX 3 + ADD 2: pills wrap on narrow screens; sort select on the same row when space allows */}
-          <div className="flex flex-wrap items-center justify-between gap-3 gap-y-2">
-            <div
-              className="flex min-w-0 flex-1 flex-wrap gap-2"
-              role="group"
-              aria-label="Filter by category"
+        <div className="relative mb-4">
+          <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500">
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              aria-hidden
             >
-              {FILTER_CATEGORIES.map((cat) => {
-                const isActive = activeCategory === cat
-                return (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => {
-                      setActiveCategory(cat)
-                      window.scrollTo({ top: 0, behavior: 'smooth' })
-                    }}
-                    className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide transition sm:text-sm ${
-                      isActive
-                        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-900/40'
-                        : 'border border-gray-600 bg-transparent text-gray-300 hover:border-gray-500 hover:bg-gray-800/80'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                )
-              })}
-            </div>
-
-            <div className="w-full shrink-0 sm:w-auto">
-              <label className="sr-only" htmlFor="workshop-sort">
-                Sort workshops
-              </label>
-              <select
-                id="workshop-sort"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none transition focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/40 sm:w-auto"
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          </span>
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by title or tool..."
+            className={`w-full rounded-full border border-gray-700 bg-gray-800 py-3 pl-12 text-sm text-white placeholder:text-gray-500 outline-none ring-indigo-500/0 transition focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/40 ${
+              search ? 'pr-12' : 'pr-4'
+            }`}
+          />
+          {search ? (
+            <button
+              type="button"
+              aria-label="Clear search"
+              onClick={() => setSearch('')}
+              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 transition hover:text-white"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                aria-hidden
               >
-                <option value="date-asc">Sort: Latest</option>
-                <option value="seats-desc">Sort: Seats Available</option>
-                <option value="name-asc">Sort: Name A–Z</option>
-              </select>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          ) : null}
+        </div>
+
+        <div className="flex flex-wrap gap-2 items-center justify-between mb-8">
+          <div
+            className="flex min-w-0 flex-1 flex-wrap gap-2"
+            role="group"
+            aria-label="Filter by category"
+          >
+            {FILTER_CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory(cat)
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide transition sm:text-sm ${
+                    isActive
+                      ? 'bg-indigo-600 text-white shadow-md shadow-indigo-900/40'
+                      : 'border border-gray-600 bg-transparent text-gray-300 hover:border-gray-500 hover:bg-gray-800/80'
+                  }`}
+                >
+                  {cat}
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="w-full shrink-0 sm:w-auto">
+            <label className="sr-only" htmlFor="workshop-sort">
+              Sort workshops
+            </label>
+            <select
+              id="workshop-sort"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white outline-none transition focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/40 sm:w-auto"
+            >
+              <option value="date-asc">Sort: Latest</option>
+              <option value="seats-desc">Sort: Seats Available</option>
+              <option value="name-asc">Sort: Name A–Z</option>
+            </select>
           </div>
         </div>
       </div>
 
-      {/* Grid or empty state (ADD 3) — extra top padding so content never sits under the sticky bar */}
-      <div className="px-4 pt-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+      <div className="max-w-7xl mx-auto px-4 pb-16">
+        <div>
           {shownCount === 0 ? (
             <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-700 bg-gray-800/30 py-20 text-center">
               <svg
