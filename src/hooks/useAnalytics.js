@@ -13,8 +13,10 @@ export function useAnalytics() {
    * @param {Record<string, unknown>} [properties={}] - Key/value metadata
    */
   function trackEvent(name, properties = {}) {
-    // ── Swap this one line to wire any analytics provider ──
-    console.log('[Analytics]', name, { ...properties, timestamp: new Date().toISOString() })
+    // Only log in development — silent in production
+    if (import.meta.env.DEV) {
+      console.log('[Analytics]', name, { ...properties, timestamp: new Date().toISOString() })
+    }
     // PostHog: posthog.capture(name, properties)
     // GA4:     window.gtag?.('event', name, properties)
     // Mixpanel: mixpanel.track(name, properties)
