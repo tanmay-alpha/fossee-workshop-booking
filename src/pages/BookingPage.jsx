@@ -381,11 +381,10 @@ export default function BookingPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`btn-gradient mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 text-sm font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition-all duration-200 ${
-              isSubmitting
-                ? 'opacity-80 cursor-wait'
-                : ''
-            }`}
+            className={`btn-gradient mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 text-sm font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition-all duration-200 ${isSubmitting
+              ? 'opacity-80 cursor-wait'
+              : ''
+              }`}
           >
             {isSubmitting ? (
               <>
