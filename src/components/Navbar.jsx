@@ -70,6 +70,15 @@ export default function Navbar() {
               </span>
             )}
           </NavLink>
+          <NavLink to="/transformation" className={linkClass}>
+            {({ isActive }) => (
+              <span className="group relative flex items-center gap-1.5">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                Showcase
+                <Underline isActive={isActive} />
+              </span>
+            )}
+          </NavLink>
         </div>
 
         {/* Mobile hamburger */}
@@ -107,6 +116,7 @@ export default function Navbar() {
                 { to: '/', label: 'Home', end: true },
                 { to: '/workshops', label: 'Workshops', end: false },
                 { to: '/my-bookings', label: 'My Bookings', end: false, badge: confirmedCount },
+                { to: '/transformation', label: '✦ Showcase', end: false },
               ].map(({ to, label, end, badge }) => (
                 <NavLink
                   key={to}

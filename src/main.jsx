@@ -13,6 +13,7 @@ import HomePage from './pages/HomePage.jsx'
 import WorkshopsPage from './pages/WorkshopsPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
 import MyBookingsPage from './pages/MyBookingsPage.jsx'
+import TransformationPage from './pages/TransformationPage.jsx'
 
 // Lazy loaded pages (non-critical)
 const WorkshopDetailPage = lazy(() => import('./pages/WorkshopDetailPage.jsx'))
@@ -69,6 +70,7 @@ createRoot(document.getElementById('root')).render(
                 }
               />
               <Route path="/my-bookings" element={<MyBookingsPage />} />
+              <Route path="/transformation" element={<TransformationPage />} />
               {/* 404 catch-all */}
               <Route path="*" element={<NotFoundPage />} />
             </Route>
