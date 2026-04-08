@@ -79,7 +79,7 @@ Home → Workshops → Detail → Booking → Confirmation
 
 
 ## 🔥 UI Transformation
-![UI Comparison](screenshots/comparison.png)
+  images
 ---
 
 Built for FOSSEE Summer Fellowship 2026 — IIT Bombay
