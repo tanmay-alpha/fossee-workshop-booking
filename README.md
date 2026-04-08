@@ -1,16 +1,69 @@
-# React + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🎓 FOSSEE Workshop Booking Platform
 
-Currently, two official plugins are available:
+### A modern, responsive workshop booking interface built with React
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-indigo?style=for-the-badge)](YOUR_VERCEL_URL)
+[![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://react.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com)
+[![Vite](https://img.shields.io/badge/Vite-Build-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev)
 
-## React Compiler
+</div>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📸 Screenshots
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Homepage | Workshop Listing | Booking Form |
+|----------|-----------------|--------------|
+| ![Home](screenshots/home.png) | ![Workshops](screenshots/workshops.png) | ![Booking](screenshots/booking.png) |
+
+---
+
+## ✨ Features
+
+- 🔍 **Live search and filtering** — filter by tool, sort by date/seats
+- 📋 **Workshop detail pages** — instructor, prerequisites, topics
+- 📝 **Booking form with validation** — full form + confirmation page
+- 🎨 **Dark mode UI** — modern glassmorphism design
+- 📱 **Fully responsive** — mobile, tablet, desktop
+- ⚡ **Skeleton loading states** — professional loading UX
+- 🔔 **Toast notifications** — real-time feedback
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|-----------|---------|
+| React 18 | UI framework |
+| Vite | Build tool |
+| Tailwind CSS | Styling |
+| React Router v6 | Client-side routing |
+| react-hot-toast | Notifications |
+
+---
+
+## 🚀 Getting Started
+```bash
+git clone https://github.com/YOUR_USERNAME/fossee-workshop-booking
+cd fossee-workshop-booking
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`
+
+---
+
+## 📁 Project Structure
+src/
+├── components/    # Navbar, Footer, WorkshopCard
+├── pages/         # HomePage, WorkshopsPage, DetailPage, BookingPage
+├── data/          # workshops.js (data layer)
+└── main.jsx       # Routes
+
+---
+
+Built for FOSSEE Summer Fellowship 2026 — IIT Bombay

@@ -1,76 +1,177 @@
+/* ── Tailwind base ────────────────────────────────────────────────────── */
 @import 'tailwindcss';
+
+/* ── Outfit from Google Fonts (loaded in index.html) ───────────────────── */
+
+/* ── Global resets & scroll ───────────────────────────────────────────── */
+*, *::before, *::after {
+  scroll-behavior: smooth;
+}
 
 html {
   color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   margin: 0;
-  background-color: #0f172a;
-  color: #f9fafb;
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  background-color: #0a0a0f;
+  color: #ffffff;
+  line-height: 1.6;
 }
 
 #root {
   min-height: 100svh;
 }
 
-/**
- * Home hero (#hero lives in HomePage): ensure layout, contrast, and readable text.
- * bg-clip-text + text-transparent can appear invisible if gradient/clip fails — force solid copy.
- */
-#hero {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(17 24 39),
-    rgb(30 41 59),
-    rgb(17 24 39)
-  );
+/* ── Page transition ──────────────────────────────────────────────────── */
+.page-enter {
+  animation: pageFadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-#hero > div {
-  position: relative;
-  z-index: 10;
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
 }
 
-/* FOSSEE label — explicit indigo */
-#hero > div > p:first-of-type {
-  color: rgb(129 140 248) !important;
+/* ── Success page entry ──────────────────────────────────────────────── */
+.success-card-enter {
+  animation: successCardIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
-/* Headline: solid white, bold (overrides transparent gradient text) */
-#hero #hero-heading {
-  font-weight: 700;
-  color: #ffffff !important;
+@keyframes successCardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
 
-#hero #hero-heading span {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  background-image: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
+.success-icon-enter {
+  animation: successIconIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Subtitle directly under h1 */
-#hero #hero-heading + p {
-  color: #d1d5db !important;
+@keyframes successIconIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1);    }
 }
 
-/* Hero CTAs — explicit white labels */
-#hero a {
-  color: #ffffff !important;
+/* ── Stagger entrance for grid cards ─────────────────────────────────── */
+.card-stagger {
+  opacity: 0;
+  animation: cardFadeUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Stats glass row — hero copy should read as light (not washed out) */
-#hero .mt-14,
-#hero .mt-14 span {
-  color: #f9fafb !important;
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Booking card hover ──────────────────────────────────────────────── */
+.booking-card-hover {
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.booking-card-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* Staggered fade-in for children */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Shimmer for skeletons ────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0;  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* ── Gradient text utility ────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(to right, #818cf8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card ───────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Button gradient ──────────────────────────────────────────────────── */
+.btn-gradient {
+  background: linear-gradient(to right, #7c3aed, #a855f7);
+  transition: all 0.25s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(to right, #8b5cf6, #c084fc);
+  transform: translateY(-1px);
+}
+
+.btn-gradient:active {
+  transform: scale(0.97) translateY(0);
+}
+
+/* ── Input focus ─────────────────────────────────────────────────────── */
+.input-glow {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input-glow:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  outline: none;
+}
+
+/* ── Subtle global transitions ────────────────────────────────────────── */
+a, button {
+  transition-property: color, background-color, border-color, transform, opacity;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ── Focus ring utility ───────────────────────────────────────────────── */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.6);
+  outline-offset: 2px;
+}
+
+/* ── Checkmark draw (success page) ───────────────────────────────────── */
+@keyframes checkmark-draw {
+  to { stroke-dashoffset: 0; }
 }
