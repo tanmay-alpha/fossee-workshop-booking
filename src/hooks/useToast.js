@@ -4,7 +4,7 @@
  * Designed for import in any component — no Context needed.
  */
 
-import { useState, useCallback, useRef } from 'react'
+import { useCallback } from 'react'
 
 let globalDispatch = null
 

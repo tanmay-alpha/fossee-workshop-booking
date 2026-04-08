@@ -162,6 +162,8 @@ export default function WorkshopsPage() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [sortBy, setSortBy] = useState('date-asc')
 
+  const { getSeatCount } = useApp()
+
   // Skeleton loading — 400ms
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
@@ -198,13 +200,13 @@ export default function WorkshopsPage() {
       case 'date-asc':
         return arr.sort((a, b) => workshopDateValue(a.date) - workshopDateValue(b.date))
       case 'seats-desc':
-        return arr.sort((a, b) => b.seats - a.seats)
+        return arr.sort((a, b) => getSeatCount(b.id) - getSeatCount(a.id))
       case 'name-asc':
         return arr.sort((a, b) => a.title.localeCompare(b.title))
       default:
         return arr
     }
-  }, [filteredWorkshops, sortBy])
+  }, [filteredWorkshops, sortBy, getSeatCount])
 
   const shownCount = filteredWorkshops.length
 
@@ -295,7 +297,7 @@ export default function WorkshopsPage() {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="w-full appearance-none rounded-lg border border-white/[0.08] bg-white/[0.03] py-2 pl-3 pr-9 text-sm text-white cursor-pointer outline-none transition-all duration-200 focus:border-indigo-500/40 focus:ring-1 focus:ring-indigo-500/20 sm:w-auto"
               >
-                <option value="date-asc">Sort: Latest</option>
+                <option value="date-asc">Sort: Upcoming First</option>
                 <option value="seats-desc">Sort: Seats Available</option>
                 <option value="name-asc">Sort: Name A–Z</option>
               </select>

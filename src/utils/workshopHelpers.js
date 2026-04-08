@@ -14,7 +14,7 @@
 export function getBookingStatus(spotsLeft, isBooked) {
   if (isBooked) return { label: 'Already Booked', variant: 'booked', disabled: true }
   if (spotsLeft === 0) return { label: 'Workshop Full', variant: 'full', disabled: true }
-  if (spotsLeft <= 3) return { label: `⚡ Only ${spotsLeft} Spots Left`, variant: 'urgent', disabled: false }
+  if (spotsLeft <= 3) return { label: `Only ${spotsLeft} Spots Left`, variant: 'urgent', disabled: false }
   if (spotsLeft <= 10) return { label: 'Filling Up — Book Now', variant: 'warning', disabled: false }
   return { label: 'Book Now', variant: 'default', disabled: false }
 }
@@ -39,7 +39,7 @@ export function getButtonClasses(variant) {
     case 'warning':
       return `${base} bg-amber-500/15 text-amber-300 ring-1 ring-amber-500/30 hover:bg-amber-500/25 hover:scale-[1.02] active:scale-95 focus-visible:ring-amber-500`
     default:
-      return `${base} btn-gradient text-white shadow-xl hover:scale-[1.03] active:scale-95 focus-visible:ring-fuchsia-400`
+      return `${base} btn-gradient text-white hover:scale-[1.02] active:scale-95 focus-visible:ring-indigo-400`
   }
 }
 
@@ -51,7 +51,7 @@ export function getButtonClasses(variant) {
  */
 export function getSeatMessage(seats) {
   if (seats === 0) return { message: 'This workshop is full', colorClass: 'text-red-400', pulse: false }
-  if (seats <= 3) return { message: `⚡ Only ${seats} spots left`, colorClass: 'text-red-400', pulse: true }
+  if (seats <= 3) return { message: `Only ${seats} spots left`, colorClass: 'text-red-400', pulse: true }
   if (seats <= 10) return { message: `Only ${seats} spots left`, colorClass: 'text-amber-400', pulse: false }
   return { message: `${seats} spots available`, colorClass: 'text-emerald-400', pulse: false }
 }

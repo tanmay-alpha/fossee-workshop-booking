@@ -124,32 +124,37 @@ export default function BookingPage() {
 
     setIsSubmitting(true)
 
-    // Simulate async operation
-    await new Promise((resolve) => setTimeout(resolve, 1200))
+    try {
+      // Simulate async operation
+      await new Promise((resolve) => setTimeout(resolve, 1200))
 
-    const bookingId = addBooking(workshop.id, workshop, form)
+      const bookingId = addBooking(workshop.id, workshop, form)
 
-    trackEvent('booking_completed', {
-      workshopId: workshop.id,
-      workshopTitle: workshop.title,
-      bookingId,
-    })
-
-    navigate('/booking-success', {
-      state: {
+      trackEvent('booking_completed', {
+        workshopId: workshop.id,
+        workshopTitle: workshop.title,
         bookingId,
-        attendee: {
-          name: form.name.trim(),
-          email: form.email.trim(),
+      })
+
+      navigate('/booking-success', {
+        state: {
+          bookingId,
+          attendee: {
+            name: form.name.trim(),
+            email: form.email.trim(),
+          },
+          workshop: {
+            title: workshop.title,
+            date: workshop.date,
+            duration: workshop.duration,
+            instructor: workshop.instructor,
+          },
         },
-        workshop: {
-          title: workshop.title,
-          date: workshop.date,
-          duration: workshop.duration,
-          instructor: workshop.instructor,
-        },
-      },
-    })
+      })
+    } catch {
+      setIsSubmitting(false)
+      toast.error('Something went wrong. Please try again.')
+    }
   }
 
   /* ── 404 state ── */

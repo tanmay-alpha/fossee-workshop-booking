@@ -117,12 +117,16 @@ export default function HomePage() {
               </svg>
             </Link>
 
-            <Link
-              to="/#workshops"
+            <a
+              href="#workshops"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById('workshops')?.scrollIntoView({ behavior: 'smooth' })
+              }}
               className="inline-flex items-center rounded-xl border border-gray-600 bg-white/5 px-6 py-3.5 text-sm font-semibold text-gray-300 no-underline transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             >
               Learn More
-            </Link>
+            </a>
           </div>
 
           {/* Trust Signals */}

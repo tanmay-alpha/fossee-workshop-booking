@@ -86,14 +86,4 @@ function WorkshopCard({ id, title, tag, description }) {
   )
 }
 
-/** Custom comparator — only re-render if id, title, tag, or isBooked changes */
-function areEqual(prev, next) {
-  return (
-    prev.id === next.id &&
-    prev.title === next.title &&
-    prev.tag === next.tag &&
-    prev.description === next.description
-  )
-}
-
-export default memo(WorkshopCard, areEqual)
+export default memo(WorkshopCard)
