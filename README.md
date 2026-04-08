@@ -77,6 +77,9 @@ Home → Workshops → Detail → Booking → Confirmation
 * Maintained **clear visual hierarchy**
 * Avoided over-engineering for better performance
 
+
+## 🔥 UI Transformation
+![UI Comparison](screenshots/comparison.png)
 ---
 
 Built for FOSSEE Summer Fellowship 2026 — IIT Bombay
