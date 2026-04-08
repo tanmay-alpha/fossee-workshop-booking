@@ -142,6 +142,7 @@ export function AppProvider({ children }) {
 }
 
 /** Hook to consume the app context. Throws if used outside <AppProvider>. */
+// eslint-disable-next-line react-refresh/only-export-components
 export function useApp() {
   const ctx = useContext(AppContext)
   if (!ctx) throw new Error('useApp must be used inside <AppProvider>')

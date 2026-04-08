@@ -175,7 +175,7 @@ function BookingCard({ booking, index }) {
       {/* Cancel zone */}
       {!isCancelled && isFuture && !showConfirm && (
         <div className="mt-5 flex items-center justify-between border-t border-white/[0.04] pt-4">
-          <p className="text-xs text-gray-600">Booked {new Date(booking.bookedAt || Date.now()).toLocaleDateString('en-IN')}</p>
+          <p className="text-xs text-gray-600">Booked {booking.bookedAt ? new Date(booking.bookedAt).toLocaleDateString('en-IN') : 'Recently'}</p>
           <button
             type="button"
             onClick={() => setShowConfirm(true)}

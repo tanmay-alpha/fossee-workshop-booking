@@ -35,7 +35,7 @@ function formatICSDate(dateStr) {
  *   organizer?: string
  * }} options
  */
-export function generateICS({ title, description, startDate, duration, location, organizer }) {
+export function generateICS({ title, description, startDate, location, organizer }) {
   const dtStart = formatICSDate(startDate)
   // Default end = 3 days after start (workshops are 3 days)
   const startMs = new Date(startDate).getTime()
