@@ -80,16 +80,16 @@ Home → Workshops → Detail → Booking → Confirmation
 ## 🧠 Design Decisions & Reasoning
 
 ### 1. Design Principles
-The redesign was guided by principles of simplicity, clarity, and user-centric design. I focused on improving visual hierarchy, spacing, and readability to make the interface more intuitive.
+The redesign was guided by principles of simplicity, clarity, and user-centric design. I focused on improving visual hierarchy, spacing, and readability to make the interface more intuitive. Consistent color schemes and typography were used to create a clean and modern look.
 
 ### 2. Responsiveness
-The design was built mobile-first using Tailwind CSS. Layouts adapt dynamically for different screen sizes to ensure usability on mobile devices.
+I ensured responsiveness using Tailwind CSS utility classes and flexible layouts. The design was built mobile-first, keeping in mind that most users access the platform on smaller screens. Components adjust dynamically for different screen sizes.
 
 ### 3. Trade-offs
-I balanced UI improvements with performance by avoiding heavy animations and keeping the interface lightweight and fast.
+While improving UI/UX, I balanced visual enhancements with performance. I avoided heavy animations and large assets to maintain fast load times. Some advanced features were simplified to ensure better usability and responsiveness.
 
 ### 4. Challenges Faced
-The biggest challenge was transforming a basic UI into a modern responsive interface. I solved this by redesigning layouts step-by-step and testing responsiveness across devices.
+The most challenging part was transforming a static and basic UI into a modern, responsive interface while maintaining usability. I approached this by redesigning layouts step-by-step, testing responsiveness, and focusing on improving user flow and interaction.
 
 ## 🔥 UI Transformation
   images
