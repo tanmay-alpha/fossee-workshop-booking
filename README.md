@@ -77,6 +77,19 @@ Home → Workshops → Detail → Booking → Confirmation
 * Maintained **clear visual hierarchy**
 * Avoided over-engineering for better performance
 
+## 🧠 Design Decisions & Reasoning
+
+### 1. Design Principles
+The redesign was guided by principles of simplicity, clarity, and user-centric design. I focused on improving visual hierarchy, spacing, and readability to make the interface more intuitive.
+
+### 2. Responsiveness
+The design was built mobile-first using Tailwind CSS. Layouts adapt dynamically for different screen sizes to ensure usability on mobile devices.
+
+### 3. Trade-offs
+I balanced UI improvements with performance by avoiding heavy animations and keeping the interface lightweight and fast.
+
+### 4. Challenges Faced
+The biggest challenge was transforming a basic UI into a modern responsive interface. I solved this by redesigning layouts step-by-step and testing responsiveness across devices.
 
 ## 🔥 UI Transformation
   images
